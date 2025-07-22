@@ -99,7 +99,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>0.0.8</version>
                 <configuration>
-                    <mainClass>com.jangi2.gouma9071.github.Jangi</mainClass>
+                    <mainClass>com.jangi2.gouma9071.github.JangiNONKt</mainClass>
                 </configuration>
             </plugin>
         </plugins>
