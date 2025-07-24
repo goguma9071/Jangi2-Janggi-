@@ -1,4 +1,4 @@
-package com.jangi2.gouma9071.github
+package com.jangi2.gouma9071.github.core
 
 import java.awt.Graphics
 import java.io.File
@@ -64,6 +64,7 @@ class JangiNON : JFrame() {
         }
     }
 }
+
 
 fun main() {
     SwingUtilities.invokeLater { JangiNON().isVisible = true }

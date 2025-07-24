@@ -1,5 +1,5 @@
-package com.jangi2.gouma9071.github
-import com.jangi2.gouma9071.github.team.team
+package com.jangi2.gouma9071.github.core
+import com.jangi2.gouma9071.github.core.team
 
 class 車(team: team, override var position: Position) : Piece(team, position) {
 

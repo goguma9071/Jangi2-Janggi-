@@ -1,6 +1,6 @@
-package com.jangi2.gouma9071.github
+package com.jangi2.gouma9071.github.core
 
-import com.jangi2.gouma9071.github.team.team
+import com.jangi2.gouma9071.github.core.team
 
 class 士(team: team, override var position: Position) : Piece(team, position) {
     override fun getMovablePositions(board: Board): List<Position> {

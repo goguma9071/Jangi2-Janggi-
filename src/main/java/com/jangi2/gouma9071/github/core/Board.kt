@@ -1,6 +1,6 @@
-package com.jangi2.gouma9071.github
+package com.jangi2.gouma9071.github.core
 
-import com.jangi2.gouma9071.github.team.team
+import com.jangi2.gouma9071.github.core.team
 
 class Board {
     companion object {
@@ -46,7 +46,7 @@ class Board {
 
 
         // 3. 기물 배치 (한나라 - 하단)
-        val hanTeam = com.jangi2.gouma9071.github.team.team.漢 // 한나라 팀
+        val hanTeam = team.漢 // 한나라 팀
         grid[9][0] = 車(hanTeam, Position(0, 9))
         grid[9][1] = 馬(hanTeam, Position(1, 9))
         grid[9][2] = 象(hanTeam, Position(2, 9))
@@ -76,5 +76,16 @@ class Board {
 
     fun isWithinBounds(position: Position): Boolean {
         return position.x >= 0 && position.x < WIDTH && position.y >= 0 && position.y < HEIGHT
+    }
+
+    fun movePiece(from: Position, to: Position) {
+        if (!isWithinBounds(from) || !isWithinBounds(to)) return
+
+        val piece = getPieceAt(from)
+        if (piece != null) {
+            grid[to.y][to.x] = piece
+            piece.position = to
+            grid[from.y][from.x] = null
+        }
     }
 }
