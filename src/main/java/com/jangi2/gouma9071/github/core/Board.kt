@@ -1,6 +1,6 @@
 package com.jangi2.gouma9071.github.core
 
-import com.jangi2.gouma9071.github.core.team
+import com.jangi2.gouma9071.github.core.Score
 
 class Board {
     companion object {
@@ -81,11 +81,16 @@ class Board {
     fun movePiece(from: Position, to: Position) {
         if (!isWithinBounds(from) || !isWithinBounds(to)) return
 
-        val piece = getPieceAt(from)
+        val piece = getPieceAt(from) ?: return
+        val capturedPiece = getPieceAt(to)
+
         if (piece != null) {
             grid[to.y][to.x] = piece
             piece.position = to
             grid[from.y][from.x] = null
+        }
+        if (capturedPiece != null && capturedPiece.team != piece.team) {
+
         }
     }
 }
