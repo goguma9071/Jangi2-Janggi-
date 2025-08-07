@@ -13,9 +13,17 @@ class 卒(team: team, override var position: Position ) : Piece(team, position) 
         directions.add(Position(1, 0 )) //우동
 
         if (this.team == com.jangi2.gouma9071.github.core.team.楚) {
-            directions.add(Position(0, 1)) //초나라 일시의 전진이동 방향
+            directions.add(Position(0, 1))
+            if (board.isInsidePalace(this.position)) {
+                directions.add(Position(1, 1))
+                directions.add(Position(-1, 1))
+            }
         } else {
             directions.add(Position(0, -1))
+            if (board.isInsidePalace(this.position)) {
+                directions.add(Position(-1, -1))
+                directions.add(Position(1, -1))
+            }
         } //한나라 일시
 
         for (dir in directions) {

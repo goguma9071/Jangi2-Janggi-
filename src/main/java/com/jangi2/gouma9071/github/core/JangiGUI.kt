@@ -7,7 +7,7 @@ import javax.swing.JFrame
 import javax.swing.JPanel
 import javax.swing.SwingUtilities
 
-class JangiNON : JFrame() {
+class JangiGUI : JFrame() {
 
     private val board: Board = Board()
     private val boardImage = ImageIO.read(File("src/main/resources/images/장기판.jpg"))
@@ -67,5 +67,5 @@ class JangiNON : JFrame() {
 
 
 fun main() {
-    SwingUtilities.invokeLater { JangiNON().isVisible = true }
+    SwingUtilities.invokeLater { JangiGUI().isVisible = true }
 }

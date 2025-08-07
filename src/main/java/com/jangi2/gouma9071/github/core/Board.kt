@@ -1,6 +1,7 @@
 package com.jangi2.gouma9071.github.core
 
 import com.jangi2.gouma9071.github.core.Score
+import kotlinx.coroutines.flow.callbackFlow
 
 class Board {
     companion object {
@@ -76,6 +77,11 @@ class Board {
 
     fun isWithinBounds(position: Position): Boolean {
         return position.x >= 0 && position.x < WIDTH && position.y >= 0 && position.y < HEIGHT
+    }
+
+    fun isInsidePalace(position: Position): Boolean {
+        return position.x >= 3 && position.x <= 5 && position.y >= 0 && position.y <= 2 || position.x >= 3 && position.x <=5 && position.y >= 7 && position.y <= 9
+
     }
 
     fun movePiece(from: Position, to: Position) {

@@ -13,7 +13,7 @@ import javafx.scene.layout.Pane
 import javafx.scene.layout.VBox
 import javafx.stage.Stage
 
-// Application을 상속하고, P2PEventListener 인터페이스를 구현합니다.
+// Application을 상속 및 P2PEventListener 인터페이스를 구현
 class Jangi : Application(), P2PEventListener {
 
     internal var currentTurn: team = team.楚
