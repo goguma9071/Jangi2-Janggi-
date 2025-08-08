@@ -1,6 +1,7 @@
 package com.jangi2.gouma9071.github.core
 
 import com.jangi2.gouma9071.github.core.Score
+import javafx.geometry.Pos
 import kotlinx.coroutines.flow.callbackFlow
 
 class Board {
@@ -82,6 +83,33 @@ class Board {
     fun isInsidePalace(position: Position): Boolean {
         return position.x >= 3 && position.x <= 5 && position.y >= 0 && position.y <= 2 || position.x >= 3 && position.x <=5 && position.y >= 7 && position.y <= 9
 
+    }
+    fun countPieceOnLine(from: Position, to: Position): Byte {
+        var countPiece: Byte = 0
+        when  {
+            (from.x == to.x) -> {
+                val startY = minOf(from.y, to.y)
+                val endY = maxOf(from.y, to.y)
+
+                for (y in (startY + 1) until endY) {
+                    if (getPieceAt(Position(from.x, y)) != null)
+                    countPiece++
+                }
+            }
+            (from.y == to.y) -> {
+                val startX = minOf(from.x, to.x)
+                val endX = maxOf(from.x , to.x)
+
+                for (x in (startX + 1) until endX) {
+                    if (getPieceAt(Position(x, from.y)) != null) {
+                        countPiece++
+                    }
+                }
+            }
+            else -> return 0
+
+            }
+      return countPiece
     }
 
     fun movePiece(from: Position, to: Position) {
