@@ -55,6 +55,7 @@ class Jangi : Application(), P2PEventListener {
         statusLabel.text = "현재 턴: $currentTurn"
     }
 
+
     private fun onMyPieceMoved(from: Position, to: Position) {
         board.movePiece(from, to)
         p2pManager.sendMove(from, to)

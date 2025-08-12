@@ -1,6 +1,5 @@
 package com.jangi2.gouma9071.github.core
 
-import com.jangi2.gouma9071.github.core.Score
 import javafx.geometry.Pos
 import kotlinx.coroutines.flow.callbackFlow
 
