@@ -126,4 +126,17 @@ class Board {
 
         }
     }
+
+    fun copy(): Board {
+        val newBoard = Board()
+        for (y in 0 until HEIGHT) {
+            for (x in 0 until WIDTH){
+                //복사
+                newBoard.grid[y][x] = this.grid[y][x]
+            }
+
+
+        }
+        return newBoard
+    }
 }

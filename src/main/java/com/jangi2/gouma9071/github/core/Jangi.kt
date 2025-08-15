@@ -37,7 +37,9 @@ class Jangi : Application(), P2PEventListener {
         val createGameButton = Button("방 만들기")
         val joinGameButton = Button("참가하기")
 
-        createGameButton.setOnAction { p2pManager.startServer(9071) }
+        createGameButton.setOnAction { p2pManager.startServer(9071)
+        }
+
         joinGameButton.setOnAction { p2pManager.connectToServer(ipTextField.text, 9071) }
 
         val controlBox = VBox(10.0, statusLabel, ipTextField, createGameButton, joinGameButton)
