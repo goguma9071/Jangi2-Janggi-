@@ -1,5 +1,7 @@
 package com.jangi2.gouma9071.github.core
 
+
+
 class JangiGame {
 
     fun applyMove(gameState: GameState, moveAction: MoveAction): GameState {
@@ -16,13 +18,18 @@ class JangiGame {
                 newBoard.movePiece(moveAction.from, moveAction.to)
 
                 val capturedPiece = gameState.board.getPieceAt(moveAction.to)
-                var newScores = gameState.score
-                //이어서 기물로직 구현 할 것.
+                val newScores = gameState.score
+                var newPieceCounts = gameState.pieceCount
+
+                if (capturedPiece != null && capturedPiece.team != gameState.currentTeam) {
+
+                }
             }
         }
         return gameState.copy(
             board = newBoard,
             currentTeam = nextTeam
         )
-    } 
+    }
+
 }
