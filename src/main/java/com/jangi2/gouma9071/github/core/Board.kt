@@ -1,8 +1,5 @@
 package com.jangi2.gouma9071.github.core
 
-import javafx.geometry.Pos
-import kotlinx.coroutines.flow.callbackFlow
-
 class Board {
     companion object {
         const val WIDTH = 9
@@ -75,12 +72,16 @@ class Board {
         return grid[position.y][position.x]
     }
 
+    fun getPieceAt(x: Int, y: Int): Piece? {
+        return getPieceAt(Position(x, y))
+    }
+
     fun isWithinBounds(position: Position): Boolean {
         return position.x >= 0 && position.x < WIDTH && position.y >= 0 && position.y < HEIGHT
     }
 
     fun isInsidePalace(position: Position): Boolean {
-        return position.x >= 3 && position.x <= 5 && position.y >= 0 && position.y <= 2 || position.x >= 3 && position.x <=5 && position.y >= 7 && position.y <= 9
+        return position.x >= 3 && position.x <= 5 && (position.y <= 2 || position.y >= 7)
 
     }
     fun countPieceOnLine(from: Position, to: Position): Byte {
@@ -115,27 +116,38 @@ class Board {
         if (!isWithinBounds(from) || !isWithinBounds(to)) return
 
         val piece = getPieceAt(from) ?: return
-        val capturedPiece = getPieceAt(to)
 
-        if (piece != null) {
-            grid[to.y][to.x] = piece
-            piece.position = to
-            grid[from.y][from.x] = null
+        val newPiece = when (piece) {
+            is 車 -> piece.copy(position = to)
+            is 馬 -> piece.copy(position = to)
+            is 象 -> piece.copy(position = to)
+            is 士 -> piece.copy(position = to)
+            is 卒 -> piece.copy(position = to)
+            is 包 -> piece.copy(position = to)
+            is 宮 -> piece.copy(position = to)
+            else -> null
         }
-        if (capturedPiece != null && capturedPiece.team != piece.team) {
-
-        }
+        grid[to.y][to.x] = newPiece
+        grid[from.y][from.x] = null
     }
 
     fun copy(): Board {
         val newBoard = Board()
         for (y in 0 until HEIGHT) {
             for (x in 0 until WIDTH){
-                //복사
-                newBoard.grid[y][x] = this.grid[y][x]
+                val piece = this.grid[y][x]
+                newBoard.grid[y][x] = when (piece) {
+                    is 車 -> piece.copy()
+                    is 馬 -> piece.copy()
+                    is 象 -> piece.copy()
+                    is 士 -> piece.copy()
+                    is 卒 -> piece.copy()
+                    is 包 -> piece.copy()
+                    is 宮 -> piece.copy()
+                    null -> null
+                    else -> null
+                }
             }
-
-
         }
         return newBoard
     }

@@ -1,8 +1,8 @@
 package com.jangi2.gouma9071.github.core
 
-class 宮(team: team, override var position: Position) : Piece(team, position) {
+data class 宮(override val team: team, override val position: Position) : Piece(team, position) {
     override val score = PieceScore.宮.score
-    override val piecetype = PieceType.宮
+    override val pieceType = PieceType.宮
     override fun getMovablePositions(board: Board): List<Position> {
 
         val movablePosition = mutableListOf<Position>()

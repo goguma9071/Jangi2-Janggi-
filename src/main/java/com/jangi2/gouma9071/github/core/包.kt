@@ -1,9 +1,9 @@
 package com.jangi2.gouma9071.github.core
 
 
-class 包(team: team, override var position: Position) : Piece(team, position) {
+data class 包(override val team: team, override val position: Position) : Piece(team, position) {
     override val score = PieceScore.包.score
-    override val piecetype = PieceType.包
+    override val pieceType = PieceType.包
     override fun getMovablePositions(board: Board): List<Position> {
         val movablePosition = mutableListOf<Position>()
         val directions = mutableSetOf<Position>()
