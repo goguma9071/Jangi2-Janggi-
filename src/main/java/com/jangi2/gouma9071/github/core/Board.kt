@@ -112,10 +112,12 @@ class Board {
       return countPiece
     }
 
-    fun movePiece(from: Position, to: Position) {
-        if (!isWithinBounds(from) || !isWithinBounds(to)) return
+    fun movePiece(from: Position, to: Position): Board {
+        val newBoard = this.copy()
 
-        val piece = getPieceAt(from) ?: return
+        if (!isWithinBounds(from) || !isWithinBounds(to)) return newBoard
+
+        val piece = newBoard.getPieceAt(from) ?: return newBoard
 
         val newPiece = when (piece) {
             is 車 -> piece.copy(position = to)
@@ -127,8 +129,10 @@ class Board {
             is 宮 -> piece.copy(position = to)
             else -> null
         }
-        grid[to.y][to.x] = newPiece
-        grid[from.y][from.x] = null
+        newBoard.grid[to.y][to.x] = newPiece
+        newBoard.grid[from.y][from.x] = null
+
+        return newBoard
     }
 
     fun copy(): Board {
@@ -150,5 +154,9 @@ class Board {
             }
         }
         return newBoard
+    }
+    fun getAllPieces(): List<Piece> {
+        // grid를 1차원 list로 만들고 non-null만 남김
+        return grid.flatMap { row -> row.filterNotNull() }
     }
 }
