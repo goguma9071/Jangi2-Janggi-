@@ -1,12 +1,17 @@
 package com.jangi2.gouma9071.github.core
 
-import com.jangi2.gouma9071.github.core.*
+object JangiGameReturn {
 
-/**
- * 이 객체는 상태를 가지지 않으며 순수 함수들로만 구성
- */
+    fun resetState(): GameState {
+        val resetBoard = Board()
+        val resetPieceCount = calculatePieceCount(resetBoard)
 
-object JangiGame {
+        return GameState(
+            board = resetBoard,
+            currentTeam = team.楚,
+            pieceCount = resetPieceCount
+        )
+    }
 
     /**
      * 현재 게임 상태(gameState)와 사용자의 움직임(moveAction)을 받아
@@ -14,6 +19,7 @@ object JangiGame {
      */
 
     private fun calculatePieceCount(board: Board): Map<team, Map<PieceType, Byte>> {
+        // 기물갯수를 저장하는 함수
         // 1. 양 팀 기물개수 저장용 map
         val pieceCount = mutableMapOf<team, MutableMap<PieceType, Byte>>()
         pieceCount[team.楚] = mutableMapOf()
@@ -26,6 +32,7 @@ object JangiGame {
         }
         return pieceCount.mapValues { it.value.toMap() }.toMap()
     }
+
     fun applyMove(gameState: GameState, moveAction: MoveAction): GameState {
 
         val movingPiece = gameState.board.getPieceAt(moveAction.from)
