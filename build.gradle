@@ -1,0 +1,56 @@
+plugins {
+    id 'org.jetbrains.kotlin.jvm' version '2.0.0'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+    id 'application'
+    id 'scala'
+}
+
+group = 'com.github.jangi2.goguma9071'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://repo.akka.io/releases' }
+}
+
+def scalaVersion = "2.13"
+def akkaVersion = "2.6.20"
+def javafxVersion = "21"
+
+dependencies {
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+
+    // Scala
+    implementation "org.scala-lang:scala-library:2.13.12"
+
+    // Akka
+    implementation platform("com.typesafe.akka:akka-bom_2.13:${akkaVersion}")
+    implementation "com.typesafe.akka:akka-actor-typed_2.13"
+
+    // JavaFX
+    implementation "org.openjfx:javafx-controls:${javafxVersion}"
+    implementation "org.openjfx:javafx-fxml:${javafxVersion}"
+
+    // Coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.8.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-javafx:1.8.0"
+
+    // Test
+    testImplementation "org.jetbrains.kotlin:kotlin-test"
+}
+
+application {
+    mainClass = "com.jangi2.gouma9071.github.JangiNONKt"
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
+    kotlinOptions {
+        jvmTarget = "21"
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    sourceCompatibility = "21"
+    targetCompatibility = "21"
+}
